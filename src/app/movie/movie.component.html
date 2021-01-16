@@ -1,0 +1,98 @@
+
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-content white-text">
+         <div class="row">
+
+             <div class="col s5">
+                <form #movieForm="ngForm" (ngSubmit)="onSubmit(movieForm)">
+                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="movieService.selectedMovie._id">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" name="movietitle" #name="ngModel" [(ngModel)]="movieService.selectedMovie.movietitle" placeholder="Enter movie name" required>
+                            <label>MovieTitle :
+                            <label class="red-text">*</label>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="number" name="movierating" #name="ngModel" [(ngModel)]="movieService.selectedMovie.movierating" placeholder="Enter rating" required>
+                            <label>MovieRating :
+                            <label class="red-text">*</label>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="text" name="moviereview" #name="ngModel" [(ngModel)]="movieService.selectedMovie.moviereview" placeholder="Enter review" required>
+                            <label>MovieReview :
+                            <label class="red-text">*</label>
+                            </label>
+                            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Select</a>
+
+                            <!-- Dropdown Structure -->
+                            <ul id='dropdown1' class='dropdown-content'>
+                              <li><a href="#!">Good</a></li>
+                              <li><a href="#!">Bad</a></li>
+                              <li><a href="#!">Mediocre</a></li>
+                              
+                             
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="date" name="movierelease" #name="ngModel" [(ngModel)]="movieService.selectedMovie.movierelease" placeholder="Enter release" required>
+                            <label>MovieRelease:
+                            <label class="red-text">*</label>
+                            </label>
+                           
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                          <button class="btn btn-custom right" type="button" (click)="resetForm(movieForm)">Reset</button>
+                          <button class="btn btn-custom right" type="submit" [disabled]="!movieForm.valid">Submit</button>
+                        </div>
+                      </div>
+
+                </form>
+
+
+             </div>
+             <div class="col s7">
+                <table class="responsive-table highlight">
+                    <thead>
+                      <tr>
+                        <th>MovieTitle</th>
+                        <th>MovieRating</th>
+                        <th>MovieReview</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tr *ngFor="let mov of movieService.movies">
+                      <td>{{mov.movietitle}}</td>
+                      <td>{{mov.movierating}}</td>
+                      <td>{{mov.moviereview}}</td>
+                      <td>
+                          <a class="action-btn" (click)="onEdit(mov)">
+                            <i class="material-icons">edit</i>
+                          </a>
+                          <a class="action-btn" (click)="onDelete(mov._id,movieForm)">
+                            <i class="material-icons">delete</i>
+                          </a>
+                        </td>
+                    </tr>
+                  </table>
+
+             </div>
+
+         </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
